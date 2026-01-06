@@ -42,11 +42,11 @@ jobs:
 
       - name: Collect libs
         run: |
-          mkdir out
-          find pjproject -name "*.so" -exec cp --parents {} out/ \;
+          mkdir -p artifacts
+          find pjproject -name "*.so" -exec cp --parents {} artifacts/ \;
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: pjsip-android-libs
-          path: out
+          path: artifacts
