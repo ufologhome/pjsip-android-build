@@ -3,7 +3,6 @@ plugins {
 }
 
 android {
-    namespace 'com.example.sipclient'
     compileSdk 33
 
     defaultConfig {
@@ -12,9 +11,28 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs'] // <- сюда копируем .so PJSIP
+        }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
