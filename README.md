@@ -1,1 +1,0 @@
-SIP stack project
